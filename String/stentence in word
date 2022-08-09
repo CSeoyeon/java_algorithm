@@ -1,0 +1,63 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+
+public class Main {
+
+	public String solution(String string) {
+
+		String answer = "";
+		int max = Integer.MIN_VALUE, pos;
+		
+		//#2
+		//pos라는 변수에 잘라낸 단어 숫자 
+		//index of 해서 " " (빈공간) 발견 못하면 -1 리턴하도록 
+		while((pos = string.indexOf(' ')) != -1) {
+			//0부터 pos 전까지 잘라냄 
+			String tmp = string.substring(0, pos);
+			int len = tmp.length(); 
+			if(len>max) {
+				max = len;
+				answer = tmp; 
+			}
+			string = string.substring(pos+1); 
+		}		
+		
+		if(string.length()>max) {answer = string;}
+		
+		
+		
+		/*
+		 //#1 
+		int i = 0;
+		StringTokenizer stringTokenizer = new StringTokenizer(string, " ");
+		String[] stringArray = new String[stringTokenizer.countTokens()];
+		while (stringTokenizer.hasMoreElements()) {
+			stringArray[i] = stringTokenizer.nextToken();
+			i++;
+		}
+		
+		for(String divisionWord : stringArray) {
+			int len = divisionWord.length();
+			if(len > max) {
+				max = len;
+				answer = divisionWord;
+			}
+		}
+		*/
+		
+		return answer;
+
+	}
+
+	public static void main(String[] args) throws IOException {
+		Main T = new Main();
+
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		String word = br.readLine();
+
+		System.out.println(T.solution(word));
+
+	}
+}
