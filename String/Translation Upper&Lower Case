@@ -1,0 +1,45 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class Main {
+
+	public String solution(String string) {
+
+		String answer = "";
+		
+		
+		//ASCII CODE 
+		for(char x : string.toCharArray()) {
+			if(x >= 97 && x<= 122) {
+				answer += (char)(x - 32);
+			}
+			else {
+				answer += (char)(x + 32);
+			}
+		}
+		
+		/*
+		for (char i : string.toCharArray()) {
+			if(Character.isLowerCase(i)) {
+				answer += Character.toUpperCase(i);
+			}
+			else {
+				answer += Character.toLowerCase(i);
+			}
+		}
+	*/
+		return answer;
+
+	}
+
+	public static void main(String[] args) throws IOException {
+		Main T = new Main();
+
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		String word = br.readLine();
+
+		System.out.println(T.solution(word));
+
+	}
+}
