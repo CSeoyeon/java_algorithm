@@ -1,0 +1,48 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.StringTokenizer;
+
+import javax.swing.DebugGraphics;
+import javax.swing.text.AbstractDocument.BranchElement;
+import javax.swing.text.rtf.RTFEditorKit;
+
+public class Main {
+
+	public String solution(String string) throws IOException {
+		String answer = "";
+
+		char[] s= string.toCharArray();
+		int lt = 0, rt = string.length() -1 ; 
+		while(lt<rt) {
+			if(!Character.isAlphabetic(s[lt])) {
+				lt ++ ; 
+			}
+			else if (!Character.isAlphabetic(s[rt])) {
+				rt --;
+			}
+			else {
+				char tmp = s[lt]; 
+				s[lt] = s[rt];
+				s[rt] = tmp; 
+				lt ++;
+				rt --;
+			}
+		}
+		
+		answer = String.valueOf(s);
+		return answer;
+
+	}
+
+	public static void main(String[] args) throws IOException {
+		Main T = new Main();
+
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		String string = br.readLine();
+
+		System.out.println(T.solution(string));
+	
+	}
+}
