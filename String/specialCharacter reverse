@@ -16,6 +16,7 @@ public class Main {
 		char[] s= string.toCharArray();
 		int lt = 0, rt = string.length() -1 ; 
 		while(lt<rt) {
+			//특수 문자일 경우
 			if(!Character.isAlphabetic(s[lt])) {
 				lt ++ ; 
 			}
