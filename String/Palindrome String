@@ -1,0 +1,39 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class Main {
+
+	public String solution(String string) throws IOException {
+		String answer = "YES";
+		
+		string = string.toUpperCase(); 
+		
+		String tmp = new StringBuilder(string).reverse().toString();
+		
+		if(!string.equalsIgnoreCase(tmp)){
+			answer = "NO";
+		}
+		
+		/*
+		 * #1
+		string = string.toUpperCase(); 
+		int len = string.length();
+		for(int i =0; i<len/2; i++) {
+			if(string.charAt(i) != string.charAt(len-i-1)) {return "NO";}
+			
+		}*/	
+			
+		return answer; 
+	}
+
+	public static void main(String[] args) throws IOException {
+		Main T = new Main();
+
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		String string = br.readLine();
+
+		System.out.println(T.solution(string));
+	
+	}
+}
