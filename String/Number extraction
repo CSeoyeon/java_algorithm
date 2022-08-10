@@ -1,0 +1,39 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class Main {
+
+	public int solution(String string) throws IOException {
+		String answer = "";
+		char[] charArray = string.toCharArray();
+		for(char x : charArray) {
+			if(Character.isDigit(x)){
+				answer += x; 
+			}
+		}
+		
+		/*
+		 * #1
+		int answer = 0;
+		for(char x : string.toCharArray()) {
+			if(x>=48 && x<=57) {
+				answer = answer * 10 + (x-48);
+			}
+		}
+		 */
+		
+		
+		return Integer.parseInt(answer); 
+	}
+
+	public static void main(String[] args) throws IOException {
+		Main T = new Main();
+
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		String string = br.readLine();
+
+		System.out.println(T.solution(string));
+	
+	}
+}
