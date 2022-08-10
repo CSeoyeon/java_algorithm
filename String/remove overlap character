@@ -1,0 +1,35 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.StringTokenizer;
+
+import javax.swing.DebugGraphics;
+import javax.swing.text.AbstractDocument.BranchElement;
+import javax.swing.text.rtf.RTFEditorKit;
+
+public class Main {
+
+	public String solution(String string) throws IOException {
+		String answer = "";
+	
+		for(int i =0; i<string.length(); i++) {
+	
+			if(string.indexOf(string.charAt(i)) == i) {
+					answer += string.charAt(i);
+			}
+		}
+		
+		return answer; 
+	}
+
+	public static void main(String[] args) throws IOException {
+		Main T = new Main();
+
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		String string = br.readLine();
+
+		System.out.println(T.solution(string));
+	
+	}
+}
