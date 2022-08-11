@@ -1,0 +1,58 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+import java.util.Spliterator.OfPrimitive;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.function.IntPredicate;
+
+import javax.lang.model.element.NestingKind;
+
+import org.jcp.xml.dsig.internal.dom.DOMTransform;
+
+public class Main {
+
+	public int[] solution(String string, char c) {
+
+		int[] answer = new int[string.length()];
+		int p = 1000;
+		for(int i =0; i<string.length(); i++) {
+			if(string.charAt(i) ==c) {
+				p = 0; 
+				answer[i] = p;
+			}
+			else {
+				p++;
+				answer[i] = p;
+			}
+		}
+		
+		p = 1000; 
+		for(int i = string.length()-1; i>=0; i--) {
+			if(string.charAt(i) == c) {
+				p = 0;
+			}
+			else {
+				p++;
+				answer[i] = Math.min(answer[i], p);
+			}
+		}
+		
+		return answer;
+	}
+
+	public static void main(String[] args) throws IOException {
+		Main T = new Main();
+
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringTokenizer stringTokenizer = new StringTokenizer(br.readLine(), " ");
+		
+		String string = stringTokenizer.nextToken();
+		char c = stringTokenizer.nextToken().charAt(0);
+
+		for(int x : T.solution(string, c)) {
+			System.out.print(x + " ");
+		}
+
+	}
+}
