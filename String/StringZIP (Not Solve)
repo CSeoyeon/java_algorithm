@@ -14,26 +14,24 @@ import org.jcp.xml.dsig.internal.dom.DOMTransform;
 
 public class Main {
 
-	public StringBuilder solution(String string) {
-		StringBuilder answer = new StringBuilder();
+	public String solution(String string) {
+		String answer = "";
+		string = string + " ";
 
-		char[] charArray = string.toCharArray();
 		int count = 1;
 		
 		
-		for(int i =0; i<charArray.length; i++) {
-			if(charArray[i] == charArray[i+1]) {
+		for(int i =0; i<string.toCharArray().length-1; i++) {
+			if(string.charAt(i) == string.charAt(i+1)) {
 				count ++;
 			}
 			else {
-				answer.append(charArray[i]);
-				if(count == 1 && count == 0) {
-					;
+				answer += (string.charAt(i));
+				
+				if(count > 1) {
+					answer += count;
 				}
-				else {
-					answer.append(count);
-				}
-				count = 0;
+				count = 1;
 			}
 		}
 		
@@ -44,9 +42,8 @@ public class Main {
 		Main T = new Main();
 
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		StringTokenizer stringTokenizer = new StringTokenizer(br.readLine(), " ");
 		
-		String string = stringTokenizer.nextToken();
+		String string = br.readLine();
 		
 		System.out.println(T.solution(string));
 	
