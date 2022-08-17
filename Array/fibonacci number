@@ -1,0 +1,66 @@
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.nio.charset.spi.CharsetProvider;
+import java.util.StringTokenizer;
+
+import javax.lang.model.type.ArrayType;
+import javax.security.auth.callback.ConfirmationCallback;
+
+
+public class Main {
+
+	public StringBuilder solution(int n) {
+		
+		StringBuilder stringBuilder = new StringBuilder();
+		int[] answer = new int[n]; 
+		
+		int k = 1 ;
+		answer[0] = 1;
+		for(int i =1; i<n; i++) {
+			answer[i] = k; 
+			k = k+answer[i-1];
+		}
+		
+		/*#1
+		 * answer[0] = 1;
+		 * answer[1] = 1; 
+		 * for(int i = 2; i<n; i++_{
+		 * answer[i[ = answer[i-2] +answer[i+1]}
+		 * 
+		 * */
+		
+		/*
+		 * #2 (don't use array)
+		 * int a = 1, b= 1, c;
+		 * System.out.print(a + " " + b " " ); 
+		 * for(int i =2; i<n; i++){
+		 * c = a+b;
+		 * Sysetm.out.println(c+" ")
+		 * a= b; 
+		 * b= c;
+		 * }
+		 */
+		
+		
+		
+		for(int c : answer) {
+			stringBuilder.append(c + " ");
+		}
+		
+		return stringBuilder;
+	}
+
+	public static void main(String[] args) throws IOException {
+		Main T = new Main();
+
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		
+		int n = Integer.parseInt(br.readLine());
+		
+		System.out.println(T.solution(n));
+		
+
+	}
+}
