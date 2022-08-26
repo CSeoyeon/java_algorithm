@@ -1,0 +1,68 @@
+package main;
+
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.lang.*;
+import java.util.*;
+
+public class Main {
+
+    public ArrayList<Integer> solution(int n, int m, int[] arrayA, int[] arrayB) {
+        ArrayList<Integer> answer = new ArrayList<>();
+
+        Arrays.sort(arrayA);
+        Arrays.sort(arrayB);
+
+        int p1 = 0, p2 = 0;
+
+        while(p1< n && p2 < m){
+            if(arrayA[p1] == arrayB[p2]){
+                answer.add(arrayA[p1++]);
+                p2++;
+            }
+            //배열이 이미 오름차순 되어있기 때문에 비교 후 같지 않으면 작은 쪽이 증가
+            else if(arrayA[p1] < arrayB[p2]){
+                p1++;
+            }
+            else p2++;
+        }
+
+
+
+
+
+
+
+
+
+        return  answer;
+    }
+
+
+    public static void main(String[] args) throws IOException {
+        Main T = new Main();
+
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int a = Integer.parseInt(br.readLine());
+        int[] arrayA = new int[a];
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        for(int i =0; i<a; i++){
+            arrayA[i] = Integer.parseInt(st.nextToken());
+        }
+
+        int b = Integer.parseInt(br.readLine());
+        int[] arrayB = new int[b];
+        StringTokenizer st2 = new StringTokenizer(br.readLine());
+        for(int i =0; i<b; i++){
+            arrayB[i] = Integer.parseInt(st2.nextToken());
+        }
+
+
+        for (int c : (T.solution(a, b, arrayA, arrayB))) {
+            System.out.print(c + " ");
+        }
+
+    }
+}
