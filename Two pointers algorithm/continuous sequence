@@ -1,0 +1,54 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+
+public class Main {
+
+    public int solution(int n, int m, int[] array){
+        int answer = 0;
+        int sum = 0;
+        int lt =0;
+
+        for(int rt= 0; rt<n; rt++){
+            sum += array[rt];
+
+            if(sum == m){
+                answer ++;
+            }
+
+            while(sum >= m){
+                sum -= array[lt++];
+                if(sum ==m){
+                    answer++;
+                }
+            }
+        }
+        
+
+
+        return answer;
+    }
+
+    public static void main(String[] args) throws IOException {
+        Main T = new Main();
+
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine());
+
+        int n = Integer.parseInt(st.nextToken());
+        int m = Integer.parseInt(st.nextToken());
+
+        int[] array = new int[n];
+
+        StringTokenizer st2 = new StringTokenizer(br.readLine());
+
+        for(int i =0; i < n; i++){
+            array[i] =Integer.parseInt(st2.nextToken());
+        }
+
+        System.out.println(T.solution(n, m, array));
+
+    }
+
+}
