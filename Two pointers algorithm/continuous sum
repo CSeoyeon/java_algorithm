@@ -1,0 +1,51 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+
+public class Main {
+
+    public int solution(int n) {
+        int answer = 0;
+        int sum = 0;
+        int lt = 0;
+
+        //n/2 + 1 까지만 배열에 넣기
+        int[] array = new int[n / 2 + 1];
+
+        for (int i = 0; i < n / 2 + 1; i++) {
+            array[i] = i + 1;
+        }
+
+        for (int rt = 0; rt < array.length; rt++) {
+            sum += array[rt];
+            if (sum == n) {
+                answer++;
+            }
+            while (sum >= n) {
+                sum -= array[lt++];
+                if (sum == n) {
+                    answer++;
+                }
+
+            }
+        }
+
+
+        return answer;
+    }
+
+    public static void main(String[] args) throws IOException {
+        Main T = new Main();
+
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine());
+
+        int n = Integer.parseInt(st.nextToken());
+
+
+        System.out.println(T.solution(n));
+
+    }
+
+}
