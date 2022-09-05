@@ -7,11 +7,15 @@ public class Main {
 
     public int solution(int n) {
         int answer = 0;
+        
+        //cnt == 자릿수 
         int cnt = 1;
         n--;
         while(n>0){
             cnt ++;
+            //n에서 cnt만큼 빼주며 숫자 배분 
             n = n - cnt;
+            //n/cnt -> n에서 자릿수만큼 나누어 0이 되는가 
             if(n%cnt ==0){
                 answer ++; 
             }
