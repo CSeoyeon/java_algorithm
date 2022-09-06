@@ -1,0 +1,39 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.HashMap;
+import java.util.StringTokenizer;
+
+public class Main {
+
+    public char solution(int n, String string) {
+        char answer = ' ' ;
+        HashMap<Character, Integer> studentMap = new HashMap<>();
+
+        for (char c : string.toCharArray()){
+            studentMap.put(c, studentMap.getOrDefault(c, 0)+1);
+        }
+
+        int max = Integer.MIN_VALUE;
+        for(char key : studentMap.keySet()){
+            if(studentMap.get(key) > max){
+                max = studentMap.get(key);
+                answer = key;
+            }
+        }
+
+        return answer;
+    }
+
+    public static void main(String[] args) throws IOException {
+        Main T = new Main();
+
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int n = Integer.parseInt(br.readLine());
+        String string = br.readLine();
+
+        System.out.println(T.solution(n, string));
+
+    }
+
+}
