@@ -1,0 +1,65 @@
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.*;
+
+public class Main {
+
+    public int solution(String string, String subString) {
+        int answer = 0;
+        HashMap<Character, Integer> mapA = new HashMap<>();
+        HashMap<Character, Integer> mapB = new HashMap<>();
+
+
+        //미리 substring을 mapB에 넣어둠
+        for (char x : subString.toCharArray()) {
+            mapB.put(x, mapB.getOrDefault(x, 0) + 1);
+        }
+
+        int l = subString.length() - 1;
+
+        //mapA에 substring 길이 -1 만큼 map key와 count 넣어둠
+        for (int i = 0; i < l; i++) {
+            mapA.put(string.charAt(i), mapA.getOrDefault(string.charAt(i), 0) + 1);
+
+        }
+
+        //two pointers algorithm
+        int lt = 0;
+
+        for(int rt = l; rt < string.length(); rt++){
+            //전에 mapA에 substring length -1 만큼 넣었으니 substring length (==rt) 에서 부터 maA에 key, count 넣음
+            mapA.put(string.charAt(rt), mapA.getOrDefault(string.charAt(rt), 0)+1);
+
+            //일치하는지 확인
+            if(mapA.equals(mapB)) {
+                answer ++;
+            }
+
+            //mapA의 lt번째(0부터 시작) key, count 제거
+            mapA.put(string.charAt(lt), mapA.get(string.charAt(lt))-1);
+
+            if(mapA.get(string.charAt(lt)) == 0) {
+                mapA.remove(string.charAt(lt));
+            }
+            lt++;
+        }
+
+
+        return answer;
+    }
+
+
+    public static void main(String[] args) throws IOException {
+        Main T = new Main();
+
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String string = br.readLine();
+        String subString = br.readLine();
+
+        System.out.println(T.solution(string, subString));
+
+
+    }
+}
