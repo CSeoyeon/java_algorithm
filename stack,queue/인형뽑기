@@ -14,13 +14,18 @@ public class Main {
             for(int i =0; i<board.length; i++){
                 if(board[i][pos-1] != 0){
                     int tmp = board[i][pos-1];
+
+                    //빼온 인형이니까 0으로
                     board[i][pos-1] = 0;
 
+                    //스택이 비워있지 않고, 확인한 인형(tmp)와 stack의 정상의 수가 같을때 인형 터트리기
                     if(!stack.isEmpty()&& tmp == stack.peek()){
                         answer +=2;
                         stack.pop();
                     }
-                    else{stack.push(tmp);}
+                    else{
+                        stack.push(tmp);
+                    }
                     break;
                 }
             }
