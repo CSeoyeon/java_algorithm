@@ -1,0 +1,39 @@
+import java.io.IOException;
+import java.util.Scanner;
+import java.util.Stack;
+
+public class Main {
+
+    public int solution(String n) {
+        int answer = 0;
+        Stack<Character> stack = new Stack<Character>();
+
+        for(int i =0; i<n.length(); i++){
+            if(n.charAt(i) == '('){
+                stack.push('(');
+            }
+            else{
+                stack.pop();
+                if(n.charAt(i-1) =='('){
+                    answer += stack.size();
+                }
+                else answer ++;
+
+            }
+        }
+
+        return answer;
+    }
+
+
+    public static void main(String[] args) {
+        Main T = new Main();
+
+        Scanner scanner = new Scanner(System.in);
+
+        String n = scanner.next();
+        System.out.println(T.solution(n));
+
+
+    }
+}
