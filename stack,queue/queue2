@@ -1,0 +1,40 @@
+import java.io.IOException;
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Scanner;
+import java.util.Stack;
+
+public class Main {
+
+    public String solution(String sub, String madeSub) {
+        String answer="YES";
+        Queue <Character> queue=new LinkedList<>();
+        
+        for(char x : sub.toCharArray()) {
+            queue.offer(x);
+        }
+        
+        for(char x : madeSub.toCharArray()){
+            if(queue.contains(x)){
+                if(x!=queue.poll()) {
+                    return "NO";
+                }
+            }
+        }
+        if(!queue.isEmpty()){
+            return "NO";}
+
+        return answer;
+    }
+
+
+    public static void main(String[] args) {
+        Main T = new Main();
+
+        Scanner scanner = new Scanner(System.in);
+        String sub = scanner.nextLine();
+        String madeSub = scanner.nextLine();
+        System.out.println(T.solution(sub, madeSub));
+
+    }
+}
