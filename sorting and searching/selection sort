@@ -1,0 +1,39 @@
+import java.util.Scanner;
+
+public class Main {
+
+    public int[] solution(int n, int[] array) {
+
+        for(int i =0; i<n-1; i++){
+            int index = i;
+            for(int j =i+1; j<n; j++){
+                if(array[j]<array[index]){
+                    index = j;
+                }
+            }
+            int tmp = array[i];
+            array[i] = array[index];
+            array[index] = tmp;
+        }
+        return array;
+    }
+
+
+    public static void main(String[] args) {
+        Main T = new Main();
+
+       Scanner scanner = new Scanner(System.in);
+       int n = scanner.nextInt();
+       int[] array = new int[n];
+
+       for(int i = 0; i<n; i++){
+           array[i] = scanner.nextInt();
+       }
+
+       for(int x : T.solution(n, array)){
+           System.out.print(x+ " ");
+       }
+
+
+    }
+}
