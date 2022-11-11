@@ -1,0 +1,58 @@
+import java.util.Scanner;
+
+public class Main {
+
+    public int[] solution(int s, int n, int[] array) {
+        int[] cache = new int[s];
+
+        for(int x : array){
+            //pos -> index
+            int pos = -1;
+            for(int i =0; i<s; i++){
+
+
+                // cache hits
+                if(x == cache[i]){
+                    pos = i;
+                }
+            }
+
+            //cache miss
+            if(pos == -1 ){
+                for(int i = s-1; i>=1; i--){
+                    cache[i] = cache[i-1];
+                }
+            }
+            //hit
+            else{
+                for(int i = pos; i>=1; i--){
+                    cache[i] = cache[i-1];
+                }
+            }
+            cache[0] =  x;
+
+        }
+
+        return cache;
+    }
+
+
+    public static void main(String[] args) {
+        Main T = new Main();
+
+       Scanner scanner = new Scanner(System.in);
+       int s = scanner.nextInt();
+       int n = scanner.nextInt();
+       int[] array = new int[n];
+
+       for(int i = 0; i<n; i++){
+           array[i] = scanner.nextInt();
+       }
+
+       for(int x : T.solution(s, n, array)){
+           System.out.print(x+ " ");
+       }
+
+
+    }
+}
