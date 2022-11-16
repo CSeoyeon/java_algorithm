@@ -1,4 +1,4 @@
-/* hashmap 사용 
+/* hashmap 사용 (O)n 
 package main;
 
 import java.util.HashMap;
@@ -47,4 +47,42 @@ public class Main {
     }
 }
 */
+
+// sort -> nlogn
+
+package main;
+
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class Main {
+
+    public String solution(int[] array) {
+        String answer = "U";
+        Arrays.sort(array);
+
+        for(int i =0; i<array.length -1; i++){
+            if(array[i] == array[i+1]) return "D";
+        }
+        return answer;
+
+    }
+
+    public static void main(String[] args) {
+        Main T = new Main();
+
+        Scanner scanner = new Scanner(System.in);
+
+        int k = scanner.nextInt();
+        int[] array = new int[k];
+
+        for(int i=0; i<k; i++){
+            array[i] = scanner.nextInt();
+        }
+
+        System.out.println(T.solution(array));
+
+
+    }
+}
 
