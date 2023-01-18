@@ -48,13 +48,7 @@ public class Main {
 		tree.root.rt.rt = new Node(7);
 		tree.DFS(tree.root);
 		
-		
-		Main T = new Main();
-		
-		Scanner scanner = new Scanner(System.in);
-		int n = scanner.nextInt();
-		
-		 
+
 		
 		
 	
