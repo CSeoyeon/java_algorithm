@@ -3,6 +3,8 @@ import java.util.Scanner;
 import java.util.Queue;
 import java.util.LinkedList;
 
+//진짜 문제 풀 때는 BFS로 풀어야 함. 
+
 class Node{
 	int data;
 	Node lt, rt;
