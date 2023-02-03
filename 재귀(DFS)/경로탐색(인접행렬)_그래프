@@ -1,0 +1,46 @@
+
+import java.util.Scanner;
+
+
+class Main {
+	static int n, m, answer = 0;
+	static int[][] graph;
+	static int[] check;
+
+	public void DFS(int v) {
+
+		if (v == n)
+			answer++;
+		else {
+			for (int i = 1; i <= n; i++) {
+				if (graph[v][i] == 1 && check[i] == 0) {
+					check[i] = 1;
+					DFS(i);
+					check[i] = 0;
+				}
+			}
+
+		}
+	}
+
+	public static void main(String[] args) {
+		Main T = new Main();
+		Scanner scanner = new Scanner(System.in);
+		n = scanner.nextInt();
+		m = scanner.nextInt();
+
+		// 1번 인덱스 부터 n번 인덱스까지 나와야 하니깐 n+1
+		graph = new int[n + 1][n + 1];
+		check = new int[n + 1];
+		for (int i = 0; i < m; i++) {
+			int a = scanner.nextInt();
+			int b = scanner.nextInt();
+			graph[a][b] = 1;
+		}
+		check[1] = 1;
+		T.DFS(1);
+		System.out.println(answer);
+
+	}
+
+}
