@@ -1,0 +1,36 @@
+import java.util.*;
+class Main{
+
+	
+	static int n, result =0;
+	static int max = 0;
+	public void DFS(int L, int sum, int[] arr) {
+		
+		if(L == n) {
+			if( max >= sum && sum > result ) result = sum;
+			
+			
+		}
+		
+		else {
+			DFS(L+1, sum+arr[L], arr);
+			DFS(L+1, sum, arr);
+		}
+		
+	}
+	
+	public static void main(String[] args) {
+		Main T = new Main();
+		Scanner scanner = new Scanner(System.in);
+		max = scanner.nextInt();
+		n = scanner.nextInt();
+		int[] arr = new int[n];
+		for(int i = 0; i<n; i++) {
+			arr[i] = scanner.nextInt();
+		}
+		
+		T.DFS(0, 0, arr);
+		System.out.println(result);
+		
+	}
+}
