@@ -1,0 +1,43 @@
+package main;
+
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class Main {
+
+    static int limitMin, n, result = 0;
+
+    public void DFS(int L, int min, int sum, int[] score, int[] time){
+        if(L == n){
+
+            if(limitMin >= min && result < sum){
+                result = sum;
+            }
+
+        }
+        else{
+            DFS(L+1,min+time[L], sum+score[L], score, time);
+            DFS(L+1, min, sum, score, time);
+        }
+    }
+
+    public static void main(String[] args){
+
+        Main T = new Main();
+
+        Scanner scanner = new Scanner(System.in);
+        n = scanner.nextInt();
+        limitMin = scanner.nextInt();
+
+        int[] score = new int[n];
+        int[] time = new int[n];
+
+        for(int i =0; i<n; i++){
+            score[i] = scanner.nextInt();
+            time[i] = scanner.nextInt();
+        }
+
+        T.DFS(0, 0, 0, score, time);
+        System.out.println(result);
+    }
+}
