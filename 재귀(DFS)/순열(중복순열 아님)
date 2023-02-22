@@ -1,0 +1,54 @@
+import java.util.*;
+
+class Main{
+
+	
+	static int n, m; 
+	static int[] array;
+	static int[] combine;
+	static int[] check;
+
+	public void DFS(int L) {
+		if(L== m) {
+			for(int x : combine) {
+				System.out.print(x + " ");
+			}
+			System.out.println();
+			
+		}
+		else {
+			for(int i =0; i<n; i++) {
+				if(check[i] == 0) {
+					check[i] =1;
+					combine[L] = array[i];
+					DFS(L+1);
+					check[i] = 0;
+				}
+			}
+			
+		}
+		
+		
+	}
+	
+	public static void main(String[] args) {
+		Main T = new Main();
+		
+		Scanner scanner = new Scanner(System.in);
+		
+		n = scanner.nextInt();
+		m = scanner.nextInt();
+		array = new int[n];
+		
+		for(int i =0; i<n; i++) {
+			array[i] = scanner.nextInt();
+		}
+		
+		combine = new int[m];
+		check = new int[n];
+
+		
+	
+		T.DFS(0);
+	}
+}
