@@ -1,0 +1,40 @@
+import java.util.Scanner;
+import java.io.*;
+
+public class Solution {
+
+    public int calculate(int[] array) {
+        int max = array[array.length-1];
+        int answer = 0;
+
+        for (int i = array.length-2; i >= 0; i--) {
+            if (max> array[i]) {
+                answer += max - array[i];
+
+            } else {
+                max = array[i];
+            }
+        }
+
+
+        return answer;
+    }
+
+    public static void main(String[] arg) {
+        Solution T = new Solution();
+        
+        Scanner scanner = new Scanner(System.in);
+        int t = scanner.nextInt();
+        int[] c;
+        for (int i = 0; i < t; i++) {
+            int n = scanner.nextInt();
+            c = new int[n];
+            for (int j = 0; j < n; j++) {
+                c[j] = scanner.nextInt();
+            }
+            System.out.println("#" + i + " " + T.calculate(c));
+
+        }
+        scanner.close();
+    }
+}
