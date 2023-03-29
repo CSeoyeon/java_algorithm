@@ -1,0 +1,46 @@
+import java.util.*;
+
+class Person implements Comparable<Person>{
+	int height, weight;
+	Person(int x, int y){
+		this.height = x;
+		this.weight = y;
+	}
+	@Override
+	public int compareTo(Person o) {
+		return o.height - this.height;
+	}
+}
+
+class Main{
+	
+	public int solution(ArrayList<Person> array, int n) {
+		int cnt =0;
+		Collections.sort(array);
+		int max = Integer.MIN_VALUE;
+		for(Person object : array) {
+			if(object.weight>max) {
+				max = object.weight;
+				cnt ++; 
+			}
+		}
+		
+		
+		return cnt;
+	}
+	
+	public static void main(String[] args) {
+		Main T = new Main();
+		Scanner scanner = new Scanner(System.in);
+		int n = scanner.nextInt();
+		
+		ArrayList<Person> array = new ArrayList<>();
+		for(int i =0; i<n; i++) {
+			int h = scanner.nextInt();
+			int w = scanner.nextInt();
+			array.add(new Person(h,w));
+		}
+		
+		System.out.println(T.solution(array, n));
+	}
+}
