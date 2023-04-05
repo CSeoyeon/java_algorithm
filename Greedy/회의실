@@ -1,0 +1,49 @@
+package main;
+
+import java.util.*;
+class Time implements Comparable<Time>{
+    public int start, end;
+    Time(int start, int end){
+        this.start = start;
+        this.end = end;
+    }
+    @Override
+    public int compareTo(Time o){
+        //오름차순
+        if(this.end == o.end) {
+            return this.start - o.start;
+        }
+        else return this.end - o.end;
+    }
+}
+
+public class Main {
+
+    public int solution(ArrayList<Time> array, int n ){
+        int cnt = 0;
+        Collections.sort(array);
+        int endTime = 0;
+        for(Time object : array){
+            if(object.start >= endTime){
+                cnt ++;
+                endTime = object.end;
+            }
+        }
+
+        return cnt;
+    }
+    public static void main(String[] args) {
+        Main T = new Main();
+
+        Scanner scanner = new Scanner(System.in);
+        int n = scanner.nextInt();
+        ArrayList<Time> array = new ArrayList<>();
+        for(int i =0; i<n; i++){
+            array.add(new Time(scanner.nextInt(), scanner.nextInt()));
+        }
+
+        System.out.println(T.solution(array, n));
+
+    }
+
+}
