@@ -1,0 +1,53 @@
+package main;
+
+import java.util.*;
+
+class TimeTable implements Comparable<TimeTable>{
+    public int time;
+    public char state;
+    TimeTable(int time, char state){
+        this.time = time;
+        this.state = state;
+    }
+
+    @Override
+    public int compareTo(TimeTable o){
+        if(this.time == o.time) return this.state - o.state;
+        else return this.time - o.time;
+    }
+}
+
+public class Main {
+
+    public int solution(ArrayList<TimeTable> arrayList){
+        int answer = Integer.MIN_VALUE;
+        Collections.sort(arrayList);
+        int cnt = 0;
+        for(TimeTable o : arrayList){
+            if(o.state == 's')cnt ++;
+            else cnt --;
+
+            answer = Math.max(answer, cnt);
+        }
+
+        return answer;
+    }
+
+    public static void main(String[] args){
+        Main T = new Main();
+        Scanner scanner = new Scanner(System.in);
+
+        int n = scanner.nextInt();
+        ArrayList<TimeTable> arrayList = new ArrayList<>();
+        for(int i =0; i<n; i++) {
+            int s  = scanner.nextInt();
+            int e = scanner.nextInt();
+            arrayList.add(new TimeTable(s, 's'));
+            arrayList.add(new TimeTable(e, 'e'));
+        }
+
+        System.out.println(T.solution(arrayList));
+
+    }
+
+}
