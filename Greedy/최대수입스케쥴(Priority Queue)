@@ -1,0 +1,54 @@
+package main;
+
+//기본형 - 작은 값을 우선순위
+//PriorityQueue<Integer> pQ = new PriorityQueue<>();
+
+import java.util.*;
+
+class Table implements Comparable<Table>{
+    int money, day;
+    Table(int money, int day ){
+        this.money = money;
+        this.day = day;
+    }
+
+    public int compareTo(Table o){
+        return o.day - this.day;
+    }
+}
+public class Main {
+
+    static int n, max=Integer.MIN_VALUE;
+    public int solution(ArrayList<Table> arrayList){
+        int answer = 0;
+
+        //큰값을 우선 순위 (Collections.reverseOrder)
+        PriorityQueue<Integer> pQ = new PriorityQueue<>(Collections.reverseOrder());
+        Collections.sort(arrayList);
+        int j =0;
+        for(int i = max; i>=1; i--){
+            for(; j<n; j++){
+                if(arrayList.get(j).day < i) break;
+                pQ.offer(arrayList.get(j).money);
+            }
+            if(!pQ.isEmpty()) answer+= pQ.poll();
+        }
+        return answer;
+    }
+    public static void main(String[] args) {
+        Main T = new Main();
+        Scanner scanner = new Scanner(System.in);
+        n = scanner.nextInt();
+
+        ArrayList<Table> arrayList = new ArrayList<>();
+        for(int i=0; i<n; i++){
+            int money = scanner.nextInt();
+            int date = scanner.nextInt();
+            arrayList.add(new Table(money, date));
+            if(date> max) max =date;
+        }
+
+        System.out.println(T.solution(arrayList));
+    }
+
+}
